@@ -8,10 +8,8 @@ class Solution:
 
         for r in range(len(nums)):
             add+=nums[r]
-            if add>=target:
-                
-                while add>=target:
-                    ans = min(ans, r-l+1)
-                    add-=nums[l]
-                    l+=1
+            while add>=target:
+                ans = min(ans, r-l+1)
+                add-=nums[l]
+                l+=1
         return ans if ans!=float('inf') else 0
