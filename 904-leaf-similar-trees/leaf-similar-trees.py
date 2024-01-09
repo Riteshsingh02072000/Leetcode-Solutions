@@ -21,4 +21,6 @@ class Solution:
         helper(root1)
         length = len(self.ans)
         helper(root2)
+        
+        # print(self.ans)
         return self.ans[:length] == self.ans[length:]
