@@ -8,21 +8,24 @@ class Solution:
     def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
         def dfs(node):
             if not node:
-                return 
+                return
+            
             if node.left:
                 graph[node.val].append(node.left.val)
                 graph[node.left.val].append(node.val)
+            
             if node.right:
                 graph[node.val].append(node.right.val)
                 graph[node.right.val].append(node.val)
+            
             dfs(node.left)
             dfs(node.right)
         
         graph = collections.defaultdict(list)
         dfs(root)
+        visited = set()
         time = -1
         q = deque([start])
-        visited = set()
 
         while q:
             time+=1
