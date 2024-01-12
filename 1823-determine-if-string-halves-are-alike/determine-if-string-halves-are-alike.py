@@ -3,12 +3,12 @@ class Solution:
         
         count = 0
         n = len(s)
-        for i in range(n):
-            if s[i] in "aeiouAEIOU": 
-                if i<n//2:
-                    count+=1
-                else:
-                    count-=1
+        for i in range(n//2):
+            if s[i] in "aeiouAEIOU":
+                count+=1
+        for i in range(n//2,n):
+            if s[i] in "aeiouAEIOU":
+                count-=1
         return count==0
 
 
