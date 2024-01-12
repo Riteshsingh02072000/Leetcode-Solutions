@@ -1,10 +1,10 @@
 class Solution:
     def halvesAreAlike(self, s: str) -> bool:
-        vowels = "aeiouAEIOU"
+        
         count = 0
         n = len(s)
         for i in range(n):
-            if s[i] in vowels: 
+            if s[i] in "aeiouAEIOU": 
                 if i<n//2:
                     count+=1
                 else:
