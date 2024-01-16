@@ -3,7 +3,7 @@ class Solution:
         l, r = 0, len(numbers)-1
 
         while l<r:
-            add = numbers[l]+numbers[r]
+            add = numbers[l] + numbers[r]
             if add == target:
                 return [l+1, r+1]
             
@@ -11,4 +11,4 @@ class Solution:
                 r-=1
             else:
                 l+=1
-        return -1
+        
