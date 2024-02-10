@@ -1,15 +1,15 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        rans = collections.defaultdict(int)
-        mag = collections.defaultdict(int)
+        rans = defaultdict(int)
+        mag = defaultdict(int)
 
         for x in ransomNote:
             rans[x] +=1
-        
+         
         for x in magazine:
             mag[x] +=1
         
-        for key, val in rans.items():
-            if key not in mag or mag[key]<rans[key]:
+        for x, val in rans.items():
+            if x not in mag or val>mag[x]:
                 return False
         return True
