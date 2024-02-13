@@ -1,6 +1,6 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        anag = collections.defaultdict(list)
+        anag = defaultdict(list)
         ans = []
 
         for word in strs:
@@ -10,6 +10,7 @@ class Solution:
             cur = ''.join(word_list)
             anag[cur].append(word)
         
-        for key, val in anag.items():
+        for val in anag.values():
             ans.append(val)
+
         return ans
