@@ -4,19 +4,18 @@ class Solution:
         stack = []
 
         for x in tokens:
-
-            if x not in operator:
-                stack.append(x)
-                continue
-            first = int(stack.pop())
-            second = int(stack.pop())
-            if x=='+':
-                ans = first+second
-            elif x=='-':
-                ans = second - first
-            elif x=='*':
-                ans = first*second
+            if x in operator:
+                first = int(stack.pop())
+                second = int(stack.pop())
+                if x == '+':
+                    ans = first+second
+                elif x=='-':
+                    ans = second - first
+                elif x=='*':
+                    ans = first*second
+                elif x=='/':
+                    ans = second/first
+                stack.append(ans)
             else:
-                ans = second/first
-            stack.append(ans)
+                stack.append(int(x))
         return int(stack[0])
