@@ -6,11 +6,10 @@ class Solution:
 
         while i < len(nums1) and j < len(nums2):
             if nums1[i] == nums2[j]:
-                common = nums1[i]
-                break
+                return nums1[i]
             elif nums1[i] < nums2[j]:
                 i += 1
             else:
                 j += 1
         
-        return common if common != float('inf') else -1
+        return -1
