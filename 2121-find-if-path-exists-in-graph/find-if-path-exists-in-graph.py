@@ -4,16 +4,26 @@ class Solution:
         for u, v in edges:
             graph[u].append(v)
             graph[v].append(u)
-        visited = set()
-        q= deque([source])
-        while q:
-            node = q.popleft()
+        
+        def dfs(node, visited):
             if node == destination:
                 return True
-            
             visited.add(node)
             for ngbr in graph[node]:
-                if ngbr in visited:
-                    continue
-                q.append(ngbr)
-        return False
+                if ngbr not in visited:
+                    if dfs(ngbr, visited):
+                        return True
+            return False
+        visited = set()
+        # q= deque([source])
+        # while q:
+        #     node = q.popleft()
+        #     if node == destination:
+        #         return True
+            
+        #     visited.add(node)
+        #     for ngbr in graph[node]:
+        #         if ngbr in visited:
+        #             continue
+        #         q.append(ngbr)
+        return dfs(source, visited)
