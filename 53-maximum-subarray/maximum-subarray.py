@@ -9,5 +9,5 @@ class Solution:
             if cur<0:
                 cur = 0
                 continue
-            ans = max(ans, cur)
+            # ans = max(ans, cur)
         return ans if ans!=float('-inf') else 0
