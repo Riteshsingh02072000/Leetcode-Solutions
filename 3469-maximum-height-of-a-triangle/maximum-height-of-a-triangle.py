@@ -17,6 +17,6 @@ class Solution:
                     second -= i
                 else:
                     break
+            i+=1
             h+=1
-            i += 1
         return h
