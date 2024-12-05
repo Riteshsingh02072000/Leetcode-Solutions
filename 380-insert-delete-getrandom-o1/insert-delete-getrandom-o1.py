@@ -1,4 +1,3 @@
-import random
 class RandomizedSet:
 
     def __init__(self):
@@ -10,7 +9,9 @@ class RandomizedSet:
             self.check.add(val)
             return True
         return False
+        
 
+        
 
     def remove(self, val: int) -> bool:
         if val in self.check:
