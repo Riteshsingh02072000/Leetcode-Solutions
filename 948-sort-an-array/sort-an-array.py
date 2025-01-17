@@ -7,10 +7,10 @@ class Solution:
 
         left = array[:mid]
         right = array[mid:]
-        l = self.mergeSort(left)
-        r = self.mergeSort(right)
+        self.mergeSort(left)
+        self.mergeSort(right)
 
-        self.merge(l, r, array)
+        self.merge(left, right, array)
         return array
     
     def merge(self, arr1, arr2, source):
