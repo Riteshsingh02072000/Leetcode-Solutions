@@ -4,10 +4,6 @@ class Solution:
             n = len(s)
             tmp = ""
             for i in range(n-1):
-                first = int(s[i])
-                second = int(s[i+1])
-
-                pair = (first + second)%10
-                tmp += str(pair)
+                tmp += str((int(s[i])+ int(s[i+1]))%10)
             s = tmp
-        return len(set(s)) == 1
+        return s[0] == s[1]
