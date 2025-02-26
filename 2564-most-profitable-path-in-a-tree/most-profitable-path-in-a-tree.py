@@ -1,32 +1,34 @@
 class Solution:
     def mostProfitablePath(self, edges: List[List[int]], bob: int, amount: List[int]) -> int:
-        graph = {i: [] for i in range(len(amount))}
+        n = len(amount)
+        graph = {i: [] for i in range(n)}
+
         for u, v in edges:
             graph[u].append(v)
             graph[v].append(u)
         
-        bobPath = [-1] * len(amount)
+        bobpath = [-1]*n
         path = []
 
-        def fillBobPath(node, parent):
+        def getBobPath(node, parent):
             if node == 0:
                 return True
-            for neighbor in graph[node]:
-                if neighbor != parent:
+            for ngbr in graph[node]:
+                if ngbr!=parent:
                     path.append(node)
-                    if fillBobPath(neighbor, node):
+                    if getBobPath(ngbr, node):
                         return True
                     path.pop()
-
-        fillBobPath(bob, -1)
+        getBobPath(bob, -1)
         for i, node in enumerate(path):
-            bobPath[node] = i
-        
-        def getAliceMaxScore(node, parent, currScore, timestamp):
-            if bobPath[node] == -1 or bobPath[node] > timestamp:
-                currScore += amount[node]
-            elif bobPath[node] == timestamp:
-                currScore += amount[node] // 2
-            return currScore if len(graph[node]) == 1 and node != 0 else max(getAliceMaxScore(neighbor, node, currScore, timestamp + 1) for neighbor in graph[node] if neighbor != parent)
+            bobpath[node] = i
 
-        return getAliceMaxScore(0, -1, 0, 0)
+
+        def getAliceScore(node, parent, score, time):
+            if bobpath[node] == -1 or bobpath[node]>time:
+                score += amount[node]
+            elif bobpath[node] == time:
+                score += amount[node]//2
+            
+            return score if len(graph[node]) ==1 and node!=0 else max(getAliceScore(ngbr, node, score, time+1) for ngbr in graph[node] if ngbr!=parent)
+        return getAliceScore(0, -1, 0, 0)
