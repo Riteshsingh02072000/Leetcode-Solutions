@@ -1,23 +1,24 @@
 class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
-        min_ = [float('inf')]*26
-        max_ = [float('-inf')]*26
+        res = set()
+        l = set()
+        r = Counter(s)
 
-        for i in range(len(s)):
-            char_index = ord(s[i]) - ord('a')
-            min_[char_index] = min(min_[char_index], i)
-            max_[char_index] = max(max_[char_index], i)
-        
-        ans = 0
+        for m in s:
+            r[m] -= 1
+            for c in l:
+                if r[c]>0:
+                    res.add((m, c))
+            l.add(m)
+        return len(res)
 
-        for i in range(26):
-            if min_[i] == float('inf') or max_[i] == float('-inf'):
-                continue
-            
-            unique_chars = set()
-            for j in range(min_[i]+1, max_[i]):
-                unique_chars.add(s[j])
-            
-            ans+=len(unique_chars)
-        
-        return ans
+        # unique = set(s)
+        # ans = 0
+
+        # for x in unique:
+        #     start = s.find(x)
+        #     end = s.rfind(x)
+
+        #     if start<end:
+        #         ans += len(set(s[start+1: end]))
+        # return ans
