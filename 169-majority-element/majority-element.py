@@ -1,10 +1,9 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        dic = defaultdict(int)
         n = len(nums)
-
+        dct = defaultdict(int)
         for x in nums:
-            dic[x] += 1
-            if dic[x] >= n/2:
+            dct[x] += 1
+            if dct[x]>=n/2:
                 return x
-        return -1
+        
