@@ -4,12 +4,11 @@ class Solution:
 
         ans = 0
         dct =defaultdict(int)
-        for x in dominoes:
-            x.sort()
-            x = ''.join([str(i) for i in x])
-            if x in dct:
-                ans += dct[x]
-            dct[x]+=1
+        for a, b in dominoes:
+            key = min(a, b), max(a, b)
+            
+            ans += dct[key]
+            dct[key]+=1
         return ans
 
 
