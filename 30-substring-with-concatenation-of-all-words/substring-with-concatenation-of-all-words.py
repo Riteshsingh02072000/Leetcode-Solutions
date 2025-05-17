@@ -1,8 +1,10 @@
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
+        
+
         if not words or not s:
             return []
-
+        
         word_len = len(words[0])
         word_count = defaultdict(int)
 
@@ -13,26 +15,24 @@ class Solution:
 
         for i in range(word_len):
             window = defaultdict(int)
-            left = i
             count = 0
+            left = i
 
             for j in range(i, len(s)-word_len+1, word_len):
                 word = s[j:j+word_len]
-
                 if word in words:
-                    window[word] +=1
-                    count +=1
+                    window[word] += 1
+                    count += 1
 
                     while window[word]>word_count[word]:
-                        left_word = s[left:left+word_len]
+                        left_word = s[left: left+word_len]
                         window[left_word] -= 1
+                        left += word_len
                         count -= 1
-                        left+= word_len
-                    
-                    if count==len(words):
+                    if count == len(words):
                         ans.append(left)
                 else:
                     count = 0
                     window.clear()
-                    left = j + word_len
+                    left = j+word_len
         return ans
