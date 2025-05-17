@@ -11,9 +11,9 @@ class Solution:
         }
         ans = 0
         for i in range(len(s)-1):
-            if value[s[i]] < value[s[i+1]]:
+            if value[s[i]]<value[s[i+1]]:
                 ans -= value[s[i]]
             else:
-                ans+= value[s[i]]
-        ans += value[s[len(s)-1]]
+                ans += value[s[i]]
+        ans += value[s[-1]]
         return ans
