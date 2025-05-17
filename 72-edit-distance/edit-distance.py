@@ -1,19 +1,18 @@
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
-        n = len(word1)
-        m = len(word2)
+        n1 = len(word1)
+        n2 = len(word2)
         @cache
 
-        def mdistance(i, j):
-            if i==n or j == m:
-                return (n-i) + (m-j)
+        def helper(i, j):
+            if i == n1 or j == n2:
+                return (n1-i) + (n2-j)
             
             operations = min(
-                mdistance(i+1,j)+1,
-                mdistance(i,j+1)+1,
-                mdistance(i+1,j+1) + (0 if word1[i] == word2[j] else 1),
+                helper(i+1, j)+1, #delete
+                helper(i, j+1)+1, #insert
+                helper(i+1, j+1) + (0 if word1[i]==word2[j] else 1) #replace
             )
-
-
             return operations
-        return mdistance(0,0)
+        
+        return helper(0, 0)
