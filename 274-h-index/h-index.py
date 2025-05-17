@@ -3,10 +3,6 @@ class Solution:
         ans = 0
         n = len(citations)
         citations.sort()
-        # if n==1:
-        #     if citations[0]==0:
-        #         return 0
-        #     return 1
 
         for i, val in enumerate(citations):
             if val<=n-i:
