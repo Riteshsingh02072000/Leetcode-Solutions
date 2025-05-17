@@ -3,9 +3,17 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        red = nums.count(0)
-        white = nums.count(1)
-        blue = nums.count(2)
-        
-        nums[:] = [0]*red + [1]*white + [2]*blue
-        
+        n = len(nums)
+        low, high = 0,  n-1
+        i = 0
+
+        while i<=high:
+            if nums[i] == 0:
+                nums[i], nums[low] = nums[low], nums[i]
+                low += 1
+            elif nums[i] == 2:
+                nums[i], nums[high] = nums[high], nums[i]
+                high -= 1
+                i -= 1
+            i += 1
+        return nums
