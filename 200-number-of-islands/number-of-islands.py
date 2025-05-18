@@ -1,29 +1,23 @@
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        n = len(grid)
-        m = len(grid[0])
-        ans = 0
+        m, n = len(grid), len(grid[0])
         direction = [0, 1, 0, -1, 0]
-
         def inBound(i, j):
-            return 0<=i<n and 0<=j<m
+            return 0<=i<m and 0<=j<n
         
-        def dfs(i, j):
-            # if not inBound(i, j):
-            #     return 
-            if grid[i][j]!='1':
-                return
-            
+        def islandTraverse(i, j):
             grid[i][j] = 'V'
             for x in range(4):
-                nr = i + direction[x]
-                nc = j + direction[x+1]
+                nr = i+direction[x]
+                nc = j+direction[x+1]
 
                 if inBound(nr, nc) and grid[nr][nc] == '1':
-                    dfs(nr, nc)
-        for i in range(n):
-            for j in range(m):
+                    islandTraverse(nr, nc)
+                    
+        count = 0
+        for i in range(m):
+            for j in range(n):
                 if grid[i][j] == '1':
-                    dfs(i, j)
-                    ans += 1
-        return ans
+                    islandTraverse(i, j)
+                    count += 1
+        return count
