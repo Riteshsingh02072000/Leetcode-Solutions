@@ -1,11 +1,14 @@
 class Solution:
-    def insert(self, x: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        x.append(newInterval)
-        x.sort()
-        ans = [x[0]]
-        for i in range(1, len(x)):
-            if x[i][0] <=ans[-1][1]:
-                ans[-1][1] = max(ans[-1][1], x[i][1])
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        prefix, suffix = [], []
+        start, end = newInterval
+
+        for x in intervals:
+            if x[1]<start:
+                prefix.append(x)
+            elif x[0]>end:
+                suffix.append(x)
             else:
-                ans.append(x[i])
-        return ans
+                start = min(start, x[0])
+                end = max(end, x[1])
+        return prefix + [[start, end]] + suffix
