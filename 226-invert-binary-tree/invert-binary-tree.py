@@ -9,12 +9,10 @@ class Solution:
         # if root:
         #     root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         # return root
-
         if not root:
             return root
-        
         self.invertTree(root.left)
         self.invertTree(root.right)
-
         root.left, root.right = root.right, root.left
         return root
+
