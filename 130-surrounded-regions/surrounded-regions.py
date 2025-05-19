@@ -3,11 +3,10 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        m = len(board)
-        n = len(board[0])
-        direction = [0, 1, 0, -1, 0]
+        m, n = len(board), len(board[0])
         q = deque()
-        # visited = set()
+        visited = set()
+        direction = [0, 1, 0, -1, 0]
 
         for i in range(m):
             if board[i][0] == 'O':
@@ -15,28 +14,25 @@ class Solution:
             if board[i][n-1] == 'O':
                 q.append([i, n-1])
         
-        for i in range(n):
+        for i in range(1, n-1):
             if board[0][i] == 'O':
                 q.append([0, i])
             if board[m-1][i] == 'O':
                 q.append([m-1, i])
         
-        def inBound(r, c):
-            return 0<=r<m and 0<=c<n
-        
-        while q:
-            i, j = q.popleft()
-            board[i][j] = '#'
-            for x in range(4):
-                nr = i + direction[x]
-                nc = j + direction[x+1]
+        def inBound(i, j):
+            return 0<=i<m and 0<=j<n
 
-                if inBound(nr, nc) and board[nr][nc] == 'O':
+        while q:
+            r, c = q.popleft()
+            visited.add((r, c))
+            for i in range(4):
+                nr = r + direction[i]
+                nc = c + direction[i+1]
+                if inBound(nr, nc) and (nr, nc) not in visited and board[nr][nc] == 'O':
                     q.append([nr, nc])
-        
+
         for i in range(m):
             for j in range(n):
-                if board[i][j] == 'O':
+                if (i, j) not in visited and board[i][j] == 'O':
                     board[i][j] = 'X'
-                elif board[i][j] == '#':
-                    board[i][j] = 'O'
