@@ -10,9 +10,9 @@ class Solution:
             return []
         q = deque([root])
         ans = []
-        
+
         while q:
-            for i in range(len(q)):
+            for _ in range(len(q)):
                 cur = q.popleft()
                 if cur.left:
                     q.append(cur.left)
@@ -20,4 +20,3 @@ class Solution:
                     q.append(cur.right)
             ans.append(cur.val)
         return ans
-        
