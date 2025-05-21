@@ -13,4 +13,4 @@ class Solution:
                 ans.append(node.val)
                 inOrder(node.right)
         inOrder(root)
-        return sorted(list(set(ans)))==ans
+        return sorted(list(set(ans))) == ans
