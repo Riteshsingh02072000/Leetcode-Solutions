@@ -1,7 +1,7 @@
 class Solution:
     def repairCars(self, ranks: List[int], cars: int) -> int:
-        if len(ranks) == 1:
-            return ranks[0]*(cars**2)
+        # if len(ranks) == 1:
+        #     return ranks[0]*(cars**2)
 
         def countCar(m):
             ans = 0
