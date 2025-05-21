@@ -1,19 +1,19 @@
 class Solution:
     def maxDistance(self, pos: List[int], m: int) -> int:
         pos.sort()
-        l, r = 1, (pos[-1]-pos[0])//(m-1)
-
+        l,r = 1, (pos[-1]-pos[0])//(m-1)
         ans = -1
 
         while l<=r:
             mid = (l+r)//2
-            last_pos, balls = pos[0], 1
+            last_pos = pos[0]
+            balls = 1
+
             for i in range(1, len(pos)):
                 if pos[i]-last_pos>=mid:
-                    balls+=1
+                    balls += 1
                     last_pos = pos[i]
-            
-            if balls>=m:
+            if balls >= m:
                 ans = mid
                 l = mid+1
             else:
