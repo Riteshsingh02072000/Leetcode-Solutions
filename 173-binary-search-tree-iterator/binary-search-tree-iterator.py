@@ -11,26 +11,27 @@ class BSTIterator:
         self.val = self.traverse(root)
     
     def traverse(self, root):
-        value = []
+        val = []
         def dfs(node):
             if not node:
-                return 
+                return
             dfs(node.left)
-            value.append(node.val)
+            val.append(node.val)
             dfs(node.right)
         dfs(root)
-        return value
+        return val
         
 
     def next(self) -> int:
-        node = self.val[self.idx]
-        self.idx+=1
-        return node
+        nextVal = self.val[self.idx]
+        self.idx += 1
+        return nextVal
 
         
 
     def hasNext(self) -> bool:
-        return self.idx<len(self.val)
+        return len(self.val)>self.idx
+        
 
 
 # Your BSTIterator object will be instantiated and called as such:
