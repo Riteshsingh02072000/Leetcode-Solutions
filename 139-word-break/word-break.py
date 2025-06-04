@@ -7,10 +7,10 @@ class Solution:
             cur = q.popleft()
             for word in wordDict:
                 if cur.startswith(word):
-                    new_cur = cur[len(word):]
-                    if new_cur == "":
+                    newCur = cur[len(word):]
+                    if newCur == "":
                         return True
-                    if new_cur not in visited:
-                        q.append(new_cur)
-                        visited.add(new_cur)
+                    if newCur not in visited:
+                        q.append(newCur)
+                        visited.add(newCur)
         return False
