@@ -1,43 +1,31 @@
-import random
 class RandomizedSet:
 
     def __init__(self):
-        # self.randomized = set()
         self.lst = []
-        self.idxMap = {}
-        
-    # def search(self, val):
-    #     return val in self.idx
+        self.map = {}
+
     def insert(self, val: int) -> bool:
-        # if val not in self.randomized:
-        #     self.randomized.add(val)
-        #     return True
-        # return False
-        if val in self.idxMap:
+        if val in self.map:
             return False
         self.lst.append(val)
-        self.idxMap[val] = len(self.lst)-1
+        self.map[val] = len(self.lst)-1
         return True
+
         
 
     def remove(self, val: int) -> bool:
-        # if val in self.randomized:
-        #     self.randomized.remove(val)
-        #     return True
-        # return False
-        if val not in self.idxMap:
+        if val not in self.map:
             return False
-        idx = self.idxMap[val]
+        idx = self.map[val]
         self.lst[idx] = self.lst[-1]
-        self.idxMap[self.lst[-1]] = idx
+        self.map[self.lst[-1]] = idx
         self.lst.pop()
-        del self.idxMap[val]
+        del self.map[val]
         return True
         
 
     def getRandom(self) -> int:
         return random.choice(self.lst)
-
         
 
 
