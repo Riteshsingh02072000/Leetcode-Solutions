@@ -11,9 +11,9 @@ class Solution:
                     if bucket[j]:
                         removed[bucket[j].pop()] = True
                         break
-            
             else:
                 bucket[ord(s[i])-ord('a')].append(i)
+        
         ans = []
         for i in range(n):
             if not removed[i]:
