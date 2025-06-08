@@ -1,40 +1,39 @@
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
-        w_count = collections.Counter(word)
-        b_count = collections.defaultdict(int)
+    def exist(self, grid: List[List[str]], word: str) -> bool:
+        m, n = len(grid), len(grid[0])
+        wordCount = Counter(word)
+        gridCount = defaultdict(int)
 
-        n, m = len(board), len(board[0])
-        for i in range(n):
-            for j in range(m):
-                b_count[board[i][j]] += 1
-
-        for c in w_count:
-            if b_count[c] < w_count[c]:
+        for i in range(m):
+            for j in range(n):
+                gridCount[grid[i][j]] += 1
+        
+        for c in wordCount:
+            if wordCount[c]>gridCount[c]:
                 return False
-        
+        directions = [0,1,0, -1, 0]
+
         def inBound(i, j):
-            return 0<=i<n and 0<=j<m
+            return 0<=i<m and 0<=j<n
         
-        def dfs(word, board, r, c , index, visited):
+        def dfs(r, c, index, visited):
             if index == len(word):
                 return True
             
             visited.add((r,c))
-            direction = [0, 1, 0, -1, 0]
             for i in range(4):
-                nr = r + direction[i]
-                nc = c + direction[i+1]
-
-                if not inBound(nr, nc) or (nr,nc) in visited or board[nr][nc]!=word[index]:
+                nr = r + directions[i]
+                nc = c + directions[i+1]
+                if not inBound(nr, nc) or (nr, nc) in visited or grid[nr][nc]!=word[index]:
                     continue
-                if dfs(word, board, nr, nc, index+1, visited):
+                if dfs(nr, nc, index+1, visited):
                     return True
             visited.remove((r, c))
             return False
         
-        for i in range(n):
-            for j in range(m):
-                if board[i][j] == word[0]:
-                    if dfs(word, board, i, j, 1, set()):
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == word[0]:
+                    if dfs(i, j, 1, set()):
                         return True
         return False
