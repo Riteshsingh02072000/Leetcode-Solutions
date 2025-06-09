@@ -13,9 +13,25 @@ class Solution:
             return None
         curSum += node.val
         if not node.left and not node.right:
-            return node if curSum >= limit else None
+            return node if curSum>=limit else None
         node.left = self.helper(node.left, curSum, limit)
-        node.right = self.helper(node.right, curSum , limit)
+        node.right = self.helper(node.right, curSum, limit)
         if not node.left and not node.right:
             return None
         return node
+
+
+
+
+
+
+        # if not node:
+        #     return None
+        # curSum += node.val
+        # if not node.left and not node.right:
+        #     return node if curSum >= limit else None
+        # node.left = self.helper(node.left, curSum, limit)
+        # node.right = self.helper(node.right, curSum , limit)
+        # if not node.left and not node.right:
+        #     return None
+        # return node
