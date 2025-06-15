@@ -2,6 +2,7 @@ class Trie:
 
     def __init__(self):
         self.root = {}
+        
 
     def insert(self, word: str) -> None:
         cur = self.root
@@ -19,7 +20,6 @@ class Trie:
                 return False
             cur = cur[letter]
         return '*' in cur
-    
         
 
     def startsWith(self, prefix: str) -> bool:
