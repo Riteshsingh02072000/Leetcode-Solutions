@@ -8,8 +8,17 @@ class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
         def dfs(node, path):
             if not node:
-                return 0
+                return 
             path = path*2 + node.val
-            return path if node.left is node.right else dfs(node.left, path) + dfs(node.right, path)
+
+            if not node.left and not node.right:
+                self.ans += path
+                return
+            
+            dfs(node.left, path)
+            dfs(node.right, path)
+            return
         
-        return dfs(root, 0) %(10**9 + 7)
+        self.ans = 0
+        dfs(root, 0)
+        return self.ans
