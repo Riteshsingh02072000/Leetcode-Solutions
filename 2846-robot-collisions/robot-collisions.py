@@ -8,7 +8,7 @@ class Solution:
                 stack.append((idx, h, d))
 
             else:
-                while stack and stack[-1][2] == 'R' and d == "L":
+                while stack and stack[-1][2] == 'R' and d=='L':
                     last_idx, last_h, last_d = stack.pop()
                     if last_h > h:
                         idx, h, d = last_idx, last_h - 1, "R"
